@@ -1,0 +1,54 @@
+.glow-button {
+  padding: 1rem 2rem;
+  background-color: #002c22;
+  color: #dcfce7;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 0 10px #a3b18a, 0 0 20px #f5faeb;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 2rem;
+  width: 18rem;
+  font-size: 1rem;
+}
+.img-carousel {
+  width: 85%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.wedding-heading {
+  font-family: 'Playfair Display', serif;
+  color: #283618;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 20px 0;
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+
+
+.line{
+    width: 25%;
+    border: 2px solid #002c22;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    align-self: center;
+    margin: auto;
+    opacity: 0.8;
+    margin-top: 1.5rem;
+    
+}
+
+.carousel-indicators [data-bs-target]{
+    display: none;
+}
+
+.carousel-w{
+  margin-top: 1.5rem;
+}
