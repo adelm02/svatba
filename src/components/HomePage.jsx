@@ -12,7 +12,7 @@ function HomePage() {
   const [photos, setPhotos] = useState()
 
   useEffect (() => {
-    fetch('http://192.168.100.124:4000/photos')
+    fetch('https://svatba-backend-1.onrender.com/photos')
     .then(res => res.json())
     .then(data => setPhotos(data))
     .catch(err => console.error('Chyba:', err))
@@ -49,7 +49,7 @@ function HomePage() {
                 const formData = new FormData()
                 formData.append('photo', file)
 
-                fetch('http://192.168.100.124:4000/upload_wedding', {
+                fetch('https://svatba-backend-1.onrender.com/upload_wedding', {
                   method: 'POST',
                   body: formData
                 })
@@ -74,7 +74,7 @@ function HomePage() {
                 const formData = new FormData()
                 formData.append('photo', file)
 
-                fetch('http://192.168.100.124:4000/upload_funny', {
+                fetch('https://svatba-backend-1.onrender.com/upload_funny', {
                   method: 'POST',
                   body: formData
                 })
