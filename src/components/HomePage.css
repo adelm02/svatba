@@ -1,54 +1,103 @@
-.glow-button {
-  padding: 1rem 2rem;
-  background-color: #002c22;
-  color: #dcfce7;
-  font-size: 1.3rem;
-  border: none;
-  border-radius: 999px;
-  box-shadow: 0 0 10px #a3b18a, 0 0 20px #f5faeb;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-bottom: 2rem;
-  width: 18rem;
-  font-size: 1rem;
-}
-.img-carousel {
-  width: 85%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;500&display=swap');
 
 .wedding-heading {
-  font-family: 'Playfair Display', serif;
-  color: #283618;
+  font-family: 'Cormorant Garamond', serif;
+  color: #002c22;
   font-size: 2.5rem;
   text-align: center;
   margin: 20px 0;
   letter-spacing: 2px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
   margin-top: 1rem;
 }
 
-
 .line{
-    width: 25%;
-    border: 2px solid #002c22;
-    border-radius: 999px;
-    margin-bottom: 2rem;
-    align-self: center;
-    margin: auto;
-    opacity: 0.8;
-    margin-top: 1.5rem;
-    
+  width: 25%;
+  border: 2px solid #002c22;
+  border-radius: 999px;
+  margin-bottom: 2rem;
+  align-self: center;
+  margin: auto;
+  opacity: 0.8;
 }
 
-.carousel-indicators [data-bs-target]{
-    display: none;
+button {
+  background: linear-gradient(135deg, #e3dccf, #d8c9b5);
+  color: #2f4f3f;
+  border-radius: 40px;
+  padding: 14px 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  border: 1px solid #bfae99;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease, box-shadow 0.3s ease-in-out;
+  margin-bottom: 1rem;
+  width: 17rem;
 }
 
-.carousel-w{
-  margin-top: 1.5rem;
+button:hover {
+  background: #ede7df;
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(38, 77, 59, 0.35), 0 0 20px rgba(189, 164, 139, 0.4);
 }
+
+label.button {
+  background: linear-gradient(135deg, #e3dccf, #d8c9b5);
+  color: #2f4f3f;
+  border-radius: 40px;
+  padding: 14px 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  border: 1px solid #bfae99;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all .25s ease;
+  margin-bottom: 1rem;
+  width: 17rem;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  
+}
+
+label.button:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+
+.carousel-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 760px;
+  height: 280px;
+  margin: 0.5rem auto 1rem;
+  overflow: visible;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.photo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .photo {
+    width: 380px;
+    height: 280px;
+  }
+}
+
+

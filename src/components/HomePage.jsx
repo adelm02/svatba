@@ -1,96 +1,187 @@
-import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import './HomePage.css'
-import Carousel from 'react-bootstrap/Carousel';
-import pImage from '../assets/p.png'
-import pImage2 from '../assets/a.png'
+import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import "./HomePage.css";
+import Carousel from "react-spring-3d-carousel";
+import { config } from "react-spring";
+import { v4 as uuidv4 } from "uuid";
+import pImage from "../assets/p.png";
+import pImage2 from "../assets/a.png";
+import { use } from "react";
+import Card from "./Card";
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 function HomePage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [fullscreenImg, setFullscreenImg] = useState(null);
+  const [photos, setPhotos] = useState([]);
+  useEffect(() => {
+    const load = () => {
+      fetch(`${API_URL}/photos`)
+        .then((r) => r.json())
+        .then(setPhotos)
+        .catch(console.error);
+    };
+    load(); // jednou hned
+    const id = setInterval(load, 10000); // pak každých 10 s
+    return () => clearInterval(id); // cleanup
+  }, []);
 
-  const [photos, setPhotos] = useState()
+  useEffect(() => {
+    console.log(photos);
+    photos.forEach((photo) => console.log("ID:", photo.id));
+  }, [photos]);
 
-  useEffect (() => {
-    fetch('https://svatba-backend-1.onrender.com/photos')
-    .then(res => res.json())
-    .then(data => setPhotos(data))
-    .catch(err => console.error('Chyba:', err))
-  }, []) 
+  const slides = useMemo(() => {
+    return photos.map((photo, index) => ({
+      key: index,
+      content: (
+        <img
+          className="photo"
+          src={`${API_URL}/photo/${photo.id}`}
+          alt={`photo-${photo.id}`}
+          style={{
+            objectFit: "cover",
+            borderRadius: "8px",
+          }}
+        />
+      ),
+    }));
+  }, [photos]);
+
+  const photoCards = photos.map((photo) => ({
+    key: photo.id,
+    content: (
+      <Card
+        imagen={`${API_URL}/photo/${photo.id}`}
+        onClick={setFullscreenImg}
+      />
+    ),
+  }));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % photos.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [photos]);
+
   return (
-    <div className= 'carousel-w'> 
-        <Carousel>
-          {photos?.map(photo => (
-            <Carousel.Item key= {photo.id} interval={2000}>
-              <iframe src={photo.url} width={380} height={300}></iframe>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+    <div>
+      <div className="carousel-section">
+        {photos.length === 0 ? (
+          <p>Načítám fotky...</p>
+        ) : (
+          <div
+            style={{
+              width: "30%",
+              height: "500px",
+              margin: "0 auto",
+            }}
+          >
+            <Carousel
+              slides={photoCards}
+              goToSlide={currentSlide}
+              offsetRadius={2}
+              showNavigation={false}
+              animationConfig={config.gentle}
+            />
+            {fullscreenImg && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: "rgba(0,0,0,0.9)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 1000,
+                }}
+                onClick={() => setFullscreenImg(null)}
+              >
+                <img
+                  src={fullscreenImg}
+                  alt="fullscreen"
+                  style={{
+                    maxWidth: "90vw",
+                    maxHeight: "90vh",
+                    borderRadius: "20px",
+                    boxShadow: "0 0 40px #000",
+                  }}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
-        <div>
+      <div className="content-section">
         <hr className="line"></hr>
-        </div>
+        <h1 className="wedding-heading">
+          ADÉLKA & PETR
+          <br />
+          HŘÍBKOVI
+        </h1>
 
-        <h1 className="wedding-heading">ADÉLKA & PETR<br />HŘÍBKOVI</h1>
-
-        <button className='glow-button' onClick={() => navigate('/quiz')}>
-        Spustit svatební kvíz 🤍
+        <button className="button" onClick={() => navigate("/quiz")}>
+          Spustit svatební kvíz 🤍
         </button>
-        
-        <label className='glow-button'>
+
+        <label className="button">
           Přidat svatební fotky 💍
           <input
             type="file"
             onChange={(e) => {
-              const files = e.target.files
-              if (!files.length) return
+              const files = e.target.files;
+              if (!files.length) return;
 
-              Array.from(files).forEach(file => {
-                const formData = new FormData()
-                formData.append('photo', file)
+              Array.from(files).forEach((file) => {
+                const formData = new FormData();
+                formData.append("photo", file);
 
-                fetch('https://svatba-backend-1.onrender.com/upload_wedding', {
-                  method: 'POST',
-                  body: formData
+                fetch(`${API_URL}/upload_wedding`, {
+                  method: "POST",
+                  body: formData,
                 })
-                  .then(res => res.text())
-                  .then(data => console.log("Odpověď serveru:", data))
-                  .catch(err => console.error("Chyba při odesílání", err))
-              })
+                  .then((res) => res.json())
+                  .then((data) => setPhotos([...photos, { ...data }]))
+                  .catch((err) => console.error("Chyba při odesílání", err));
+              });
             }}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </label>
 
-        <label className='glow-button'>
+        <label className="button">
           Vtipné fotky z minulosti
           <input
             type="file"
             onChange={(e) => {
-              const files = e.target.files
-              if (!files.length) return
+              const files = e.target.files;
+              if (!files.length) return;
 
-              Array.from(files).forEach(file => {
-                const formData = new FormData()
-                formData.append('photo', file)
+              Array.from(files).forEach((file) => {
+                const formData = new FormData();
+                formData.append("photo", file);
 
-                fetch('https://svatba-backend-1.onrender.com/upload_funny', {
-                  method: 'POST',
-                  body: formData
+                fetch(`${API_URL}/upload_funny`, {
+                  method: "POST",
+                  body: formData,
                 })
-                  .then(res => res.text())
-                  .then(data => console.log("Odpověď serveru:", data))
-                  .catch(err => console.error("Chyba při odesílání", err))
-              })
+                  .then((res) => res.json())
+                  .then((data) => setPhotos([...photos, { ...data }]))
+                  .catch((err) => console.error("Chyba při odesílání", err));
+              });
             }}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </label>
-
-
-        
+      </div>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

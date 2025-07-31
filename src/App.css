@@ -1,13 +1,30 @@
 #root {
   width: 100%;
+  position: fixed;
+  inset: 0;
   max-width: 1280px;
+  background-color: #f2efe9;
   margin: 0 auto;
   text-align: center;
-  background-image: url('./assets/wee4.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   min-height: 100vh;
+}
+.img-1{
+position: absolute;
+width: 26%;
+bottom:-2px;
+right: -23px;
+}
+.img-2{
+position: absolute;
+width: 25%;
+top:-20px;
+left: -10px;
+}
+.img-3{
+position: absolute;
+width: 35%;
+bottom:-38px;
+left: -15px;
 }
 
 .logo {
@@ -44,6 +61,11 @@
 
 .read-the-docs {
   color: #888;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
 
