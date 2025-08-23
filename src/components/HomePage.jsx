@@ -1,16 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "./HomePage.css";
+import { Button, Modal, Form } from "react-bootstrap";
 import Carousel from "react-spring-3d-carousel";
 import { config } from "react-spring";
 import { v4 as uuidv4 } from "uuid";
 import pImage from "../assets/p.png";
 import pImage2 from "../assets/a.png";
-import { use } from "react";
 import Card from "./Card";
 
 const API_URL = import.meta.env.VITE_API_URL;
 function HomePage() {
+  //modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [name, setName] = useState("");
+
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fullscreenImg, setFullscreenImg] = useState(null);
@@ -65,6 +72,22 @@ function HomePage() {
     }, 5000);
     return () => clearInterval(interval);
   }, [photos]);
+
+  const handleStartQuiz = () => {
+    const saved = localStorage.getItem("username");
+    if (saved) {
+      navigate("/quiz");
+    } else {
+      setShow(true);
+    }
+  };
+
+  const handleSave = () => {
+    if (name.length > 0) {
+      localStorage.setItem("username", name);
+      navigate("/quiz");
+    }
+  };
 
   return (
     <div>
@@ -126,10 +149,6 @@ function HomePage() {
           HŘÍBKOVI
         </h1>
 
-        <button className="button" onClick={() => navigate("/quiz")}>
-          Spustit svatební kvíz 🤍
-        </button>
-
         <label className="button">
           Přidat svatební fotky 💍
           <input
@@ -180,6 +199,36 @@ function HomePage() {
           />
         </label>
       </div>
+      <>
+        <button className="button" onClick={handleStartQuiz}>
+          Spustit svatební kvíz 🤍
+        </button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header className="text" closeButton>
+            {" "}
+            Zadej  své  jméno{" "}
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  onChange={(e) => setName(e.target.value)}
+                  autoFocus
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer className="cudlikyQuiz">
+            <Button className="cudlik" variant="secondary" onClick={handleSave}>
+              Potvrdit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
     </div>
   );
 }

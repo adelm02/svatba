@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+
+.form{
+    width: 82%;
+    margin: 22rem auto 0 auto;
+    height: 16.5rem;
+    background-color: rgba(191, 174, 153, 0.1);
+    border-radius: 10%;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.que{
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-left: 2.5rem;
+    
+}
+
+.nazev{
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.button-wrapper{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    height: auto;
+    position: absolute;
+    bottom: 0.5rem;
+}
+.buttonik {
+    background-color: rgba(191, 174, 153, 0.2);
+    color: #000000;
+    
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 6rem;
+    padding: 0.3rem 1rem;
+    bottom: 2rem;
+    left: 50%;
+    transition: none;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.correct-answer {
+  font-weight: bold;
+  color: #8c9958;
+}
+
+.vysledek {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin: 6rem auto 0 auto;
+    font-family: 'Comfortaa', cursive;
+}
+
+.back {
+    margin-left: 17.5rem;
+    margin-top: 0.5rem;
+    width: 4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    background-color: rgba(191, 174, 153, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}

@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CA&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
 
 .wedding-heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cinzel', serif;
   color: #002c22;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
   margin: 20px 0;
   letter-spacing: 2px;
@@ -21,15 +24,15 @@
   opacity: 0.8;
 }
 
-button {
-  background: linear-gradient(135deg, #e3dccf, #d8c9b5);
-  color: #2f4f3f;
+.button {
+  background-color: rgba(191, 174, 153, 0.2);
+  color: #5e744b;
   border-radius: 40px;
   padding: 14px 28px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  border: 1px solid #bfae99;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease, box-shadow 0.3s ease-in-out;
   margin-bottom: 1rem;
   width: 17rem;
@@ -42,14 +45,14 @@ button:hover {
 }
 
 label.button {
-  background: linear-gradient(135deg, #e3dccf, #d8c9b5);
-  color: #2f4f3f;
+  background-color: rgba(191, 174, 153, 0.2);
+  color: #5e744b;
   border-radius: 40px;
   padding: 14px 28px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  border: 1px solid #bfae99;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all .25s ease;
   margin-bottom: 1rem;
   width: 17rem;
@@ -100,4 +103,28 @@ label.button:hover {
   }
 }
 
+.cudlikyQuiz{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.cudlik {
+  background-color: rgba(191, 174, 153, 0.2);
+  color: #5e744b;
+  border-radius: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease, box-shadow 0.3s ease-in-out;
+  margin-bottom: 1rem;
+  width: 6rem;
+}
+
+.text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+}
