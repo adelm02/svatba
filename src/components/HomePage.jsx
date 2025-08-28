@@ -36,40 +36,25 @@ function HomePage() {
 
   useEffect(() => {
     console.log(photos);
-    photos.forEach((photo) => console.log("ID:", photo.id));
-  }, [photos]);
-
-  const slides = useMemo(() => {
-    return photos.map((photo, index) => ({
-      key: index,
-      content: (
-        <img
-          className="photo"
-          src={`${API_URL}/photo/${photo.id}`}
-          alt={`photo-${photo.id}`}
-          style={{
-            objectFit: "cover",
-            borderRadius: "8px",
-          }}
-        />
-      ),
-    }));
+    photos.forEach((photo) => console.log("ID:", photo.name));
   }, [photos]);
 
   const photoCards = photos.map((photo) => ({
-    key: photo.id,
+    key: `${photo.folder}-${photo.name}`,
     content: (
       <Card
-        imagen={`${API_URL}/photo/${photo.id}`}
+        imagen={`${API_URL}/photo/${photo.folder}/${photo.name}`}
         onClick={setFullscreenImg}
       />
     ),
   }));
 
+  console.log(photoCards)
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % photos.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [photos]);
 
@@ -88,7 +73,7 @@ function HomePage() {
       navigate("/quiz");
     }
   };
-
+  console.log(photoCards)
   return (
     <div>
       <div className="carousel-section">
@@ -166,10 +151,15 @@ function HomePage() {
                   body: formData,
                 })
                   .then((res) => res.json())
-                  .then((data) => setPhotos([...photos, { ...data }]))
+                  .then((data) => {
+                    console.log(data)
+                    setPhotos([...photos, { ...data }])
+                    console.log(photos)
+                  })
                   .catch((err) => console.error("Chyba při odesílání", err));
               });
             }}
+            multiple
             style={{ display: "none" }}
           />
         </label>
@@ -195,6 +185,7 @@ function HomePage() {
                   .catch((err) => console.error("Chyba při odesílání", err));
               });
             }}
+            multiple
             style={{ display: "none" }}
           />
         </label>

@@ -1,6 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+CA&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa/Comfortaa-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('/fonts/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+body {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel/Cinzel-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel/Cinzel-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
 
 
 .wedding-heading {
@@ -113,7 +137,7 @@ label.button:hover {
   background-color: rgba(191, 174, 153, 0.2);
   color: #5e744b;
   border-radius: 40px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Comfortaa', serif;
   font-size: 0.9rem;
   border: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -126,5 +150,5 @@ label.button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cinzel', serif;
+  font-family: 'Comfortaa', serif;
 }

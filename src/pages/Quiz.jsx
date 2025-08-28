@@ -16,6 +16,7 @@ function Quiz() {
 
   const [showAnswer, setShowAnswer] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [leaderboard, setLeaderboard] = useState([]);
   const navigate = useNavigate();
   //TODO: vytvor si premennu do ktorej to budeš ukladat
   const next = (e) => {
@@ -51,16 +52,24 @@ function Quiz() {
             score,
           }),
         });
-
-        //TODO: taktiez aktualizuj premmenu tu ked niekto dokonči quiz aby sa aj lokalne hned upravili data podobne ako sme to robili pri tom ako sa pridavali fotky
+        await loadLeaderBoard();
       }
     }, 500);
   };
 
+  const loadLeaderBoard = async () => {
+  try {
+    const response = await fetch(`${API_URL}/leaderboard`);
+    const data = await response.json();
+
+    // Seřaď podle skóre sestupně
+    const sorted = data.sort((a, b) => b.score - a.score);
+    setLeaderboard(sorted);
+  } catch (err) {
+    console.error("Chyba při načítání leaderboardu:", err);
+  }
+};
   useEffect(() => {
-    const loadLeaderBoard = () => {
-      //TODO: ziskaj data z backendu ako pri fotkach.
-    };
     if (quizCompleted) {
       setFinished(true);
       setScore(Number(localStorage.getItem("score")));
@@ -72,6 +81,8 @@ function Quiz() {
         setScore(Number(localStorage.getItem("score")));
       }
     }
+
+    loadLeaderBoard()
   }, []);
 
   const handleBack = () => {
@@ -87,6 +98,18 @@ function Quiz() {
           Zpět
         </button>
       </div>
+
+    <div className="leaderboard">
+    <h2>Žebříček</h2>
+    <ol>
+      {leaderboard.map((item, i) => (
+        <li key={i}>
+          <span>{i + 1}. {item.username}</span>
+          <span>{item.score} bodů</span>
+        </li>
+      ))}
+    </ol>
+  </div>
 
       {/* TODO: zobraz leaderboard sortnut si to možes bud tu alebo na backende a prijat už sortnute data */}
       <Form className="form">

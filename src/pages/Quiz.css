@@ -1,10 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
-
 
 .form{
     width: 82%;
-    margin: 22rem auto 0 auto;
+    margin: 3rem auto 0 auto;
     height: 16.5rem;
     background-color: rgba(191, 174, 153, 0.1);
     border-radius: 10%;
@@ -43,7 +40,7 @@
     background-color: rgba(191, 174, 153, 0.2);
     color: #000000;
     
-    font-family: 'Cinzel', serif;
+    font-family: 'Comfortaa', serif;
     font-size: 0.9rem;
     border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -72,10 +69,62 @@
 .back {
     margin-left: 17.5rem;
     margin-top: 0.5rem;
+    color: #000;
     width: 4rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Comfortaa', serif;
     font-size: 0.8rem;
     background-color: rgba(191, 174, 153, 0.1);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+}
+
+.leaderboard {
+  background-color: rgba(191, 174, 153, 0.1);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+  margin: 2rem auto;
+  max-width: 90%;
+  max-height: 250px;
+  overflow-y: auto;
+  font-family: 'Comfortaa', cursive;
+  text-align: center;
+}
+
+.leaderboard h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #002c22;
+}
+
+.leaderboard ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leaderboard li {
+  background-color: #f2efe9; /* žlutá jako ve tvém boxu */
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  font-family: 'Comfortaa', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Scrollbar styling */
+.leaderboard::-webkit-scrollbar {
+  width: 6px;
+}
+.leaderboard::-webkit-scrollbar-thumb {
+  background-color: #002c22;
+  border-radius: 3px;
 }
