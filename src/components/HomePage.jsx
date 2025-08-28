@@ -34,28 +34,6 @@ function HomePage() {
     return () => clearInterval(id); // cleanup
   }, []);
 
-  useEffect(() => {
-    console.log(photos);
-    photos.forEach((photo) => console.log("ID:", photo.id));
-  }, [photos]);
-
-  const slides = useMemo(() => {
-    return photos.map((photo, index) => ({
-      key: index,
-      content: (
-        <img
-          className="photo"
-          src={`${API_URL}/photo/${photo.id}`}
-          alt={`photo-${photo.id}`}
-          style={{
-            objectFit: "cover",
-            borderRadius: "8px",
-          }}
-        />
-      ),
-    }));
-  }, [photos]);
-
   const photoCards = photos.map((photo) => ({
     key: photo.id,
     content: (
@@ -69,7 +47,7 @@ function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % photos.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [photos]);
 
@@ -88,7 +66,6 @@ function HomePage() {
       navigate("/quiz");
     }
   };
-
   return (
     <div>
       <div className="carousel-section">
@@ -166,10 +143,13 @@ function HomePage() {
                   body: formData,
                 })
                   .then((res) => res.json())
-                  .then((data) => setPhotos([...photos, { ...data }]))
+                  .then((data) => {
+                    setPhotos([...photos, { ...data }])
+                  })
                   .catch((err) => console.error("Chyba při odesílání", err));
               });
             }}
+            multiple
             style={{ display: "none" }}
           />
         </label>
@@ -195,6 +175,7 @@ function HomePage() {
                   .catch((err) => console.error("Chyba při odesílání", err));
               });
             }}
+            multiple
             style={{ display: "none" }}
           />
         </label>
